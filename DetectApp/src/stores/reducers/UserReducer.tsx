@@ -11,7 +11,9 @@ const initialState = {
   last_name: '',
   last_login: '',
   created_at: '',
-  token: ''
+  token: '',
+  id_camera: '',
+  id_office: ''
 };
 // type initialStateType = {
 //   id: string;
@@ -41,7 +43,9 @@ const userReducer = (
         last_name: action.payload.last_name,
         last_login: action.payload.last_login,
         created_at: action.payload.created_at,
-        token: action.payload.token
+        token: action.payload.token,
+        id_camera: action.payload.id_camera,
+        id_office: action.payload.id_office
       };
     case ActionType.RESETUSER:
       return initialState;

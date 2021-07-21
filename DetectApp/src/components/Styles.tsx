@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    elevation:0
+    elevation: 0,
   },
   avatar: {
     backgroundColor: '#e6e6e6',
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     // flexDirection:'row',
   },
   camera: {
-    height: '70%',
+    height: '100%',
   },
   textCameraButton: {
     fontSize: 30,
@@ -56,15 +56,13 @@ export default StyleSheet.create({
   topScreen: {
     backgroundColor: '#0464ac',
     height: 300,
-    elevation:1
-  
+    elevation: 1,
   },
   bottomScreen: {
     // backgroundColor: 'powderblue',
     backgroundColor: 'white',
     height: '60%',
-    elevation:1
-   
+    elevation: 1,
   },
   cardLogin: {
     position: 'absolute',
@@ -79,9 +77,8 @@ export default StyleSheet.create({
       height: 12,
     },
     shadowOpacity: 0.58,
-    shadowRadius: 16.00,
-    elevation:2
-  
+    shadowRadius: 16.0,
+    elevation: 2,
   },
   avatarLogin: {
     marginLeft: 'auto',
@@ -153,14 +150,38 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   modalLoadingAnimation: {
-      elevation: 4,
-      height: 150,
-      width: 150,
-      position: 'absolute',
-      backgroundColor: 'white',
-      alignSelf: 'center',
-      marginTop: 300,
-      justifyContent: 'center',
-      borderRadius: 10,
-  }
+    elevation: 4,
+    height: 150,
+    width: 150,
+    position: 'absolute',
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    marginTop: 300,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  viewContainProfileInfor: {
+    marginTop:'5%',
+    flexDirection: 'row',
+    borderBottomWidth: 2,
+    paddingBottom: "2%",
+    borderColor:'#b3b3b3'
+  },
+  profileLabel: {
+    fontWeight: 'bold',
+    fontSize: 25,
+  },
+  profileText: {
+    fontSize: 25,
+  },
+  viewContainLog: {
+    flexDirection: 'row',
+  },
+  logLabel: {
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  logText: {
+    fontSize: 18,
+  },
 });

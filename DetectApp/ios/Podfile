@@ -14,6 +14,8 @@ target 'DetectApp' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'RNOpenEspecificsSettings', :path => '../node_modules/react-native-open-especifics-settings'
+
   target 'DetectAppTests' do
     inherit! :complete
     # Pods for testing

@@ -20,4 +20,6 @@ export type initialStateType = {
   last_login: string;
   created_at: string;
   token: string;
+  id_camera: string,
+  id_office: string
 };

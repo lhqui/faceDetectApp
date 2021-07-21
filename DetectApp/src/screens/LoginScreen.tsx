@@ -4,21 +4,21 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ImageBackground,
   Image,
   Alert,
   Modal,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 import Styles from '../components/Styles';
 import {Button, Card, TextInput, Avatar} from 'react-native-paper';
 import type {Props} from '../components/Types';
 import {Icon} from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useDispatch, useSelector, Provider} from 'react-redux';
-import {State, store} from '../stores';
+import {useDispatch, useSelector} from 'react-redux';
+import {State} from '../stores';
 import {setUsertoStore} from '../stores/actionCreators';
-import {bindActionCreators} from 'redux';
+import NetInfo from '@react-native-community/netinfo';
 
 type InputLoginValue = {
   account: string;
@@ -31,13 +31,33 @@ interface settingInputType {
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
+  const [IsConnection, setConnection] = useState(false);
   useEffect(() => {
+    checkConnection();
     getSettingData();
     getLoginData();
   }, []);
+  //check connection
+  const checkConnection = () => {
+    if (Platform.OS == 'android') {
+      NetInfo.fetch().then(state => {
+        if (state.isConnected) {
+          setConnection(true);
+          console.log('da ket noi');
+        } else {
+          Alert.alert('Chua ket noi', 'Hay kiem tra ket noi', [
+            {
+              text: 'ok',
+              style: 'cancel',
+            },
+          ]);
+        }
+      });
+    }
+  };
+
   //dispatch acction to state
   const dispatch = useDispatch();
-
   // map global state to prop
   const userProfile = useSelector((state: State) => state.profile);
 
@@ -54,7 +74,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
         ['password', values.password],
       ];
       await AsyncStorage.multiSet(loginValue, () => {
-        console.log('save all data');
+        // console.log('save all data');
       });
     } catch (e) {
       console.log('saving error');
@@ -82,41 +102,59 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
   const [userSettingIsShow, setUserSettingIsShow] = useState(false);
   const axios = require('react-native-axios');
   const [modalVisible, setModalVisible] = useState(false);
+  const loginHandle = async() => {
+    await checkConnection();
+    //defaultValueCameraAndOfficeId()
+    if (IsConnection == true) {
+      setModalVisible(true);
+      storeloginInput();
+      let idcamera = settingValues.idCamera
+      let idOffice = settingValues.idOffice
+      if(settingValues.idCamera == "" && settingValues.idOffice == "") {
+          idcamera ="5"
+          idOffice ="6"
+      }
+      axios
+        .post('https://ai.giaiphapmobifone.vn/api/login', {
+          username: values.account,
+          password: values.password,
+        })
+        .then((resp: any) => {
+          if (resp.data.status === 1) {
+            // console.log(resp.data.data.id)
+            //setaccountInfo(resp.data.data)
 
-  const loginHandle = () => {
-    setModalVisible(true);
-    storeloginInput();
-    axios
-      .post('https://ai.giaiphapmobifone.vn/api/login', {
-        username: values.account,
-        password: values.password,
-      })
-      .then((resp: any) => {
-        if (resp.data.status === 1) {
-          // console.log(resp.data.data.id)
-          //setaccountInfo(resp.data.data)
-
-          let data = {
-            id: resp.data.data.id,
-            group_id: resp.data.data.group_id,
-            username: resp.data.data.username,
-            email: resp.data.data.email,
-            first_name: resp.data.data.first_name,
-            last_name: resp.data.data.last_name,
-            last_login: resp.data.data.last_login,
-            created_at: resp.data.data.created_at,
-            token: resp.data.data.token,
-          };
-          dispatch(setUsertoStore(data));
-          navigation.navigate('Home');
-          setModalVisible(false);
-        } else {
-          console.log('sai mk');
-          setModalVisible(false);
-        }
-        console.log('thuc thi 1');
-      })
-      .catch((err: any) => console.log(err));
+            let data = {
+              id: resp.data.data.id,
+              group_id: resp.data.data.group_id,
+              username: resp.data.data.username,
+              email: resp.data.data.email,
+              first_name: resp.data.data.first_name,
+              last_name: resp.data.data.last_name,
+              last_login: resp.data.data.last_login,
+              created_at: resp.data.data.created_at,
+              token: resp.data.data.token,
+              id_camera: idcamera,
+              id_office: idOffice,
+            };
+            dispatch(setUsertoStore(data));
+            console.log('dang nhap thanh cong');
+            navigation.navigate('Home');
+            setModalVisible(false);
+          } else {
+            console.log('sai mk');
+            setModalVisible(false);
+          }
+        })
+        .catch((err: any) => console.log(err));
+    } else {
+      Alert.alert('Chua ket noi', 'Hay kiem tra ket noi', [
+        {
+          text: 'ok',
+          style: 'cancel',
+        },
+      ]);
+    }
 
     // resovle("\t\t This is second promise");
     // console.log("Returned second promise");
@@ -199,12 +237,12 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             onPress={storeSettingInput}>
             Thêm
           </Button>
-          <Button
+          {/* <Button
             style={{backgroundColor: '#2c74bc'}}
             mode="contained"
             onPress={toHomescreen}>
             xem
-          </Button>
+          </Button> */}
         </View>
       </View>
     );
@@ -282,20 +320,12 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             onPress={loginHandle}>
             Đăng nhập
           </Button>
-          <TouchableOpacity onPress={() => console.log('work')}>
-            <Text style={Styles.forgetPassword}>Bạn quên mật khẩu?</Text>
-          </TouchableOpacity>
         </Card.Content>
       </Card>
       {userSettingIsShow == true && settingInput()}
 
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-      >
-        <View
-          style={Styles.modalLoadingAnimation}>
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <View style={Styles.modalLoadingAnimation}>
           <ActivityIndicator size="large" color="#2c74bc" />
         </View>
       </Modal>
