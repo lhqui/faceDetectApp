@@ -51,8 +51,8 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
     if (timeLeft === 0) {
       //  console.log("TIME LEFT IS 0");
       // setTimeLeft(null)
-      setcapPermission(true);
-      setDetectPhase(0);
+      //setcapPermission(true);
+      //setDetectPhase(0);
       return;
     }
     // exit early when we reach 0
@@ -161,8 +161,11 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         token: userProfile.token,
       })
       .then((res: any) => {
-        console.log(res.data);
-        setrecognizedName(res.data.data.name);
+        if( res.data.status === 1 && res.data.data !== null) {
+          console.log(res.data);
+          setrecognizedName(res.data.data.name);
+          setDetectPhase(0);
+        }
       })
       .catch((err: any) => {
         console.log('loi khong gui dc');
@@ -170,46 +173,63 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const checkCoordinate = () => {
+    console.log(windowWidth ,windowHeight)
+    console.log(topLeft)
     if (
-      topLeft.x <= 80 &&
-      topLeft.y <= 160 &&
-      topLeft.height <= 210 &&
-      topLeft.width <= 240
+       topLeft.x <= 13*windowHeight/100 && topLeft.x > 0 &&
+      topLeft.y <= 47*windowWidth/100 && topLeft.y > 0 &&
+      topLeft.height <= 34*windowHeight/100 && topLeft.height > 0 &&
+      topLeft.width <= 75*windowWidth/100 && topLeft.width > 0 
     ) {
+     // console.log("dc chup")
       setDetectPhase(1);
+      takePicture();
+      setTimeLeft(10);
     } else {
-      setDetectPhase(0);
+     setDetectPhase(0);
+      console.log("ko dc chup")
     }
   };
   const checkPermisionForCap = () => {
-    if (capPermission == true) {
+    if (timeLeft === 0) {
       takePicture();
-      setcapPermission(false);
       setTimeLeft(10);
-    } else {
-      return;
     }
   };
 
   const handleFaceDetection = ({faces}: any) => {
-    switch (detectPhase) {
-      case 0:
-        setTopLeft({
+      if(timeLeft === 0) {
+                setTopLeft({
           ...topLeft,
           height: Math.ceil(faces[0].bounds.size.height),
           width: Math.ceil(faces[0].bounds.size.width),
           x: Math.ceil(faces[0].bounds.origin.x),
           y: Math.ceil(faces[0].bounds.origin.y),
         });
-        checkCoordinate();
-        break;
-      case 1:
-        checkPermisionForCap();
-        break;
-      default:
-        break;
-    }
+        checkCoordinate()
+      }
   };
+  // const handleFaceDetection = ({faces}: any) => {
+  //   console.log(detectPhase)
+  //   //console.log(timeLeft===0)
+  //   switch (detectPhase) {
+  //     case 0:
+  //       setTopLeft({
+  //         ...topLeft,
+  //         height: Math.ceil(faces[0].bounds.size.height),
+  //         width: Math.ceil(faces[0].bounds.size.width),
+  //         x: Math.ceil(faces[0].bounds.origin.x),
+  //         y: Math.ceil(faces[0].bounds.origin.y),
+  //       });
+  //       checkCoordinate();
+  //       break;
+  //     case 1:
+  //       checkPermisionForCap();
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   const toExistCamera = () => navigation.navigate('Home');
   const [cameraId, setcameraId] = useState('');
