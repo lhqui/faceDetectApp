@@ -46,9 +46,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     // flexDirection:'row',
   },
-  camera: {
-    height: '100%',
-  },
+
   textCameraButton: {
     fontSize: 30,
     color: 'white',
@@ -97,37 +95,7 @@ export default StyleSheet.create({
     display: 'flex',
     borderWidth: 1,
   },
-  roundButton: {
-    width: 90,
-    height: 90,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
-    borderRadius: 100,
-    backgroundColor: '#e6e6e6',
-    display: 'flex',
-  },
-  listButtonContainer: {
-    flexDirection: 'row',
-    padding: 10,
-    flexWrap: 'wrap',
-    // backgroundColor:'red',
-    height: '60%',
-  },
-  viewContainAButton: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: 10,
-  },
-  homeTopScreen: {
-    // backgroundColor: 'powderblue',
-    height: '50%',
-  },
-  homeImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
+
   buttonImage: {
     width: '100%',
     height: '100%',
@@ -184,4 +152,130 @@ export default StyleSheet.create({
   logText: {
     fontSize: 18,
   },
+  // component chung
+  screenImage: {
+    width:'100%',
+    height:'100%'
+  },
+  roundButton: {
+    width: 70,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 100,
+    backgroundColor: '#e6e6e6',
+    display: 'flex',
+  },
+  // Home screen
+  homeTopScreen: {
+    width:'100%',
+    height: '50%',
+    flexWrap:'wrap'
+  },
+  homeBottomScreen: {
+    width:'100%',
+    maxHeight:'70%',
+    flexWrap:'wrap',
+    flexDirection:'column'
+  },
+  homeBottomScreenRowContainButton: {
+    width:'100%',
+    flexDirection:'row',
+    justifyContent:'center',
+    marginTop:'5%',
+   // backgroundColor:'red',
+  },
+  homeCreenCameraImage: {
+    width:90,
+    height:90,
+    flexWrap:'wrap',
+   // backgroundColor:'green'
+  },
+  homeCreenCamera: {
+    width:'80%',
+    height: 50,
+    borderRadius:50,
+    backgroundColor: '#2c74bc',
+    justifyContent:'center',
+  },
+  homeButtonAndName: {
+    flexDirection:'column',
+    flexWrap:'wrap',
+    alignItems:'center',
+
+  },
+  homeButtonAndNameAtMid: {
+    flexDirection:'column',
+    flexWrap:'wrap',
+    alignItems:'center',
+    marginLeft: '6%',
+    marginRight: '6%'
+  },
+  // log creen,
+  logContainer: {
+    width:'100%',
+    flexWrap:'wrap',
+    flexDirection:'row',
+    borderWidth:1,
+    borderColor:'#b3b3b3'
+  },
+  logContainLeft: {
+    width:'20%',
+    paddingTop: 5,
+    //backgroundColor:'red',
+    flexWrap:'wrap',
+    alignContent:'center',
+    
+  },
+  logContainRight: {
+    width:'80%',
+    //backgroundColor:'blue',
+    flexWrap:'wrap',
+    flexDirection:'column'
+  },
+  // Camera screen
+  cameraTopScreen: {
+    width:'100%',
+    height:'70%',
+    flexWrap:'wrap',
+    backgroundColor:'blue'
+  },
+  cameraDisplay: {
+    width:'100%',
+    flex: 1
+  },
+  cameraBottomScreen: {
+    width:'100%',
+    height:'30%',
+    flexWrap:'wrap',
+    flexDirection:'row',
+    //backgroundColor:'green'
+  },
+  cameraBottomLeft: {
+    width:'40%',
+    height:'100%',
+    flexWrap:'wrap',
+    //backgroundColor:'red'
+  },
+  cameraBottomRight: {
+    width:'60%',
+    height:'100%',
+   //backgroundColor:'blue',
+   flexDirection:'column',
+   flexWrap:'wrap',
+   padding: 10
+  },
+  cameraBottomInfoLabel: {
+    fontSize: 20,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  cameraBottomNameDisplay: {
+    fontSize: 20, 
+    color: 'black'
+  }
+
+
+
 });

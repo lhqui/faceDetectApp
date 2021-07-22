@@ -12,9 +12,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Icon} from 'react-native-elements';
 import Styles from '../components/Styles';
-import {Avatar, Title} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import type {Props} from '../components/Types';
 import {useSelector, useDispatch} from 'react-redux';
 import {State} from '../stores';
@@ -67,48 +66,55 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
   return (
     <SafeAreaView style={Styles.container}>
       <View style={Styles.homeTopScreen}>
-        <ImageBackground
+        <Image
           source={require('../image/homebackground.png')}
-          style={Styles.homeImage}
+          style={Styles.screenImage}
         />
       </View>
-      <View style={Styles.listButtonContainer}>
-        <View style={Styles.viewContainAButton}>
-          <TouchableOpacity
-            style={Styles.roundButtonBorder}
+      <View style={Styles.homeBottomScreen}>
+      <View style={Styles.homeBottomScreenRowContainButton}>
+            <View style={Styles.homeCreenCameraImage}>
+            <Image
+          source={require('../image/scanface.png')}
+          style={Styles.screenImage}
+        />
+            </View>
+        </View>
+        <View style={Styles.homeBottomScreenRowContainButton}>
+          <Button
+            style={Styles.homeCreenCamera}
+            mode="contained"
             onPress={toDetectFaceScreen}>
-            {/* <Icon name="rowing" /> */}
-            <Image
-              source={require('../image/scanface.png')}
-              style={Styles.buttonImage}></Image>
-          </TouchableOpacity>
-          <Text style={{fontSize: 20}}>Nhận diện</Text>
+            [ Nhận diện ] 
+          </Button>
         </View>
-        <View style={Styles.viewContainAButton}>
-          <TouchableOpacity style={Styles.roundButton} onPress={toLog}>
-            <Image
-              source={require('../image/history.png')}
-              style={Styles.buttonImage}></Image>
-          </TouchableOpacity>
-          <Text style={{fontSize: 20}}>Lịch sử</Text>
-        </View>
-        <View style={Styles.viewContainAButton}>
-          <TouchableOpacity style={Styles.roundButton} onPress={toProfile}>
-            <Image
-              source={require('../image/profile.png')}
-              style={Styles.buttonImage}></Image>
-          </TouchableOpacity>
-          <Text style={{fontSize: 20}}>Cá nhân</Text>
-        </View>
-        <View style={Styles.viewContainAButton}>
-          <TouchableOpacity
-            style={Styles.roundButton}
-            onPress={logOutNofication}>
-            <Image
-              source={require('../image/logout.png')}
-              style={Styles.buttonImage}></Image>
-          </TouchableOpacity>
-          <Text style={{fontSize: 20}}>Đăng xuất</Text>
+        <View style={Styles.homeBottomScreenRowContainButton}>
+          <View style={Styles.homeButtonAndName}>
+            <TouchableOpacity style={Styles.roundButton} onPress={toLog}>
+              <Image
+                source={require('../image/history.png')}
+                style={Styles.buttonImage}></Image>
+            </TouchableOpacity>
+            <Text style={{fontSize: 20}}>Lịch sử</Text>
+          </View>
+          <View style={Styles.homeButtonAndNameAtMid}>
+            <TouchableOpacity style={Styles.roundButton} onPress={toProfile}>
+              <Image
+                source={require('../image/profile.png')}
+                style={Styles.buttonImage}></Image>
+            </TouchableOpacity>
+            <Text style={{fontSize: 20}}>Cá nhân</Text>
+          </View>
+          <View style={Styles.homeButtonAndName}>
+            <TouchableOpacity
+              style={Styles.roundButton}
+              onPress={logOutNofication}>
+              <Image
+                source={require('../image/logout.png')}
+                style={Styles.buttonImage}></Image>
+            </TouchableOpacity>
+            <Text style={{fontSize: 20}}>Đăng xuất</Text>
+          </View>
         </View>
       </View>
 

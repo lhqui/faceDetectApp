@@ -1,12 +1,6 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  BackHandler,
-  Image,
-} from 'react-native';
+import {View, TouchableOpacity, Text, BackHandler, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {RNCamera} from 'react-native-camera';
 import Styles from '../components/Styles';
@@ -161,7 +155,7 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         token: userProfile.token,
       })
       .then((res: any) => {
-        if( res.data.status === 1 && res.data.data !== null) {
+        if (res.data.status === 1 && res.data.data !== null) {
           console.log(res.data);
           setrecognizedName(res.data.data.name);
           setDetectPhase(0);
@@ -173,21 +167,25 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const checkCoordinate = () => {
-    console.log(windowWidth ,windowHeight)
-    console.log(topLeft)
+    console.log(windowWidth, windowHeight);
+    console.log(topLeft);
     if (
-       topLeft.x <= 13*windowHeight/100 && topLeft.x > 0 &&
-      topLeft.y <= 47*windowWidth/100 && topLeft.y > 0 &&
-      topLeft.height <= 34*windowHeight/100 && topLeft.height > 0 &&
-      topLeft.width <= 75*windowWidth/100 && topLeft.width > 0 
+      topLeft.x <= (13 * windowHeight) / 100 &&
+      topLeft.x > 0 &&
+      topLeft.y <= (47 * windowWidth) / 100 &&
+      topLeft.y > 0 &&
+      topLeft.height <= (34 * windowHeight) / 100 &&
+      topLeft.height > 0 &&
+      topLeft.width <= (75 * windowWidth) / 100 &&
+      topLeft.width > 0
     ) {
-     // console.log("dc chup")
+      // console.log("dc chup")
       setDetectPhase(1);
       takePicture();
       setTimeLeft(10);
     } else {
-     setDetectPhase(0);
-      console.log("ko dc chup")
+      setDetectPhase(0);
+      console.log('ko dc chup');
     }
   };
   const checkPermisionForCap = () => {
@@ -198,16 +196,16 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
   };
 
   const handleFaceDetection = ({faces}: any) => {
-      if(timeLeft === 0) {
-                setTopLeft({
-          ...topLeft,
-          height: Math.ceil(faces[0].bounds.size.height),
-          width: Math.ceil(faces[0].bounds.size.width),
-          x: Math.ceil(faces[0].bounds.origin.x),
-          y: Math.ceil(faces[0].bounds.origin.y),
-        });
-        checkCoordinate()
-      }
+    if (timeLeft === 0) {
+      setTopLeft({
+        ...topLeft,
+        height: Math.ceil(faces[0].bounds.size.height),
+        width: Math.ceil(faces[0].bounds.size.width),
+        x: Math.ceil(faces[0].bounds.origin.x),
+        y: Math.ceil(faces[0].bounds.origin.y),
+      });
+      checkCoordinate();
+    }
   };
   // const handleFaceDetection = ({faces}: any) => {
   //   console.log(detectPhase)
@@ -233,37 +231,36 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
 
   const toExistCamera = () => navigation.navigate('Home');
   const [cameraId, setcameraId] = useState('');
-  const imageReview = (photo: any) => {
-    return (
-      <View
-        style={{
-          height: '90%',
-          width: '100%',
-          //borderWidth: 2,
-          marginLeft: '3%',
-          marginBottom: '3%',
-        }}>
-        {photo != '' && (
-          <Image
-            style={{
-              width: '100%',
-              height: '100%',
-              marginLeft: '3%',
-              marginBottom: '3%',
-            }}
-            source={{uri: photo}}
-          />
-        )}
-      </View>
-    );
-  };
+  // const imageReview = (photo: any) => {
+  //   return (
+  //     <View
+  //       style={{
+  //         height: '100%',
+  //         width: '100%',
+  //         borderWidth: 2,
+
+  //       }}>
+  //       {photo != '' && (
+  //         <Image
+  //           style={{
+  //             width: '100%',
+  //             height: '100%',
+  //            // marginLeft: '3%',
+  //            // marginBottom: '3%',
+  //           }}
+  //           source={{uri: photo}}
+  //         />
+  //       )}
+  //     </View>
+  //   );
+  // };
 
   return (
     <SafeAreaView style={Styles.container}>
-      <View style={{height: '70%', width: '100%'}}>
+      <View style={Styles.cameraTopScreen}>
         <RNCamera
           ref={camera}
-          style={Styles.camera}
+          style={Styles.cameraDisplay}
           type={type}
           cameraId={cameraId}
           androidCameraPermissionOptions={{
@@ -304,28 +301,25 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         </RNCamera>
       </View>
 
-      <View style={{height: '30%', width: '100%', flexWrap: 'wrap'}}>
-        <View
-          style={{
-            width: '40%',
-            height: '100%',
-            flexDirection: 'column-reverse',
-            backgroundColor: '',
-            flexWrap: 'wrap',
-          }}>
-          {imageReview(capturedImage)}
+      <View style={Styles.cameraBottomScreen}>
+        <View style={Styles.cameraBottomLeft}>
+          {/* {imageReview(capturedImage)} */}
+          {capturedImage !== '' && (
+            <Image
+              style={{
+                width: '100%',
+                height: '100%',
+                flexWrap: 'wrap',
+                // marginLeft: '3%',
+                // marginBottom: '3%',
+              }}
+              source={{uri: capturedImage}}
+            />
+          )}
         </View>
-        <View style={{width: '60%', height: '100%'}}>
-          <Text
-            style={{
-              fontSize: 20,
-              color: 'black',
-              paddingTop: '10%',
-              fontWeight: 'bold',
-            }}>
-            Tên chấm công:{' '}
-          </Text>
-          <Text style={{fontSize: 30, color: 'black', padding: '5%'}}>
+        <View style={Styles.cameraBottomRight}>
+          <Text style={Styles.cameraBottomInfoLabel}>Tên chấm công:</Text>
+          <Text style={Styles.cameraBottomNameDisplay}>
             [ {recognizedName == '' ? '' : recognizedName} ]
           </Text>
         </View>
@@ -346,7 +340,7 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
             fontSize: 70,
             color: 'black',
             padding: '5%',
-            marginTop:'30%',
+            marginTop: '30%',
             alignSelf: 'center',
           }}>
           {timeLeft}

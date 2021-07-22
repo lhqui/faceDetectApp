@@ -49,11 +49,11 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
   const renderListCheckinLog = (fetchData: any) => {
     let view = fetchData.map((log: any) => {
       return (
-        <View key={log.id_checkin_logs} style={{width: '100%', height:'7%' ,borderWidth: 1, flexDirection:'row', paddingTop:'5%'}}>
-          <View style={{ width:'30%', height:'100%', alignItems:'center'}}>
-            <Image source={require('../image/personCheck.png')} style={{ width:'40%', height:'44%', marginTop:'10%'}}></Image>     
+        <View key={log.id_checkin_logs} style={Styles.logContainer}>
+          <View style={Styles.logContainLeft}>
+            <Image source={require('../image/personCheck.png')} style={{width:60, height:60}}></Image>     
           </View>
-          <View style={{width:'80%', height:'100%'}}>
+          <View style={Styles.logContainRight}>
           <View style={Styles.viewContainLog}>
             <Text style={Styles.logLabel}>Mã số: </Text>
             <Text style={Styles.logText}>{log.id_checkin_logs}</Text>
@@ -61,7 +61,7 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
           <View style={Styles.viewContainLog}>
             <Text style={Styles.logLabel}>Họ Tên: </Text>
             <Text style={Styles.logText}>
-              {log.first_name} {log.last_name}
+              {log.first_name}{log.last_name}
             </Text>
           </View>
           <View style={Styles.viewContainLog}>

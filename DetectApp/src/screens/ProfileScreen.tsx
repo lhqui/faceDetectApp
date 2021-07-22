@@ -103,7 +103,7 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
       }}>
         <View style={{marginTop:'15%', flexDirection:'row', borderBottomWidth:2, paddingBottom: "2%", borderColor:'#b3b3b3'}}>
           <Text style={Styles.profileLabel}>Họ tên: </Text>
-          <Text style={Styles.profileText}>{profile.first_name} {profile.last_name} </Text>
+          <Text style={Styles.profileText}>{profile.first_name}{profile.last_name} </Text>
         </View>
         <View style={Styles.viewContainProfileInfor}>
           <Text style={Styles.profileLabel}>Tên tài khoản: </Text>
