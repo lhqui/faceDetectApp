@@ -30,22 +30,6 @@ export default StyleSheet.create({
     margin: 20,
     flexDirection: 'row',
   },
-  buttonFlipCamera: {
-    position: 'absolute',
-    fontSize: 20,
-    width: 50,
-    height: 40,
-    display: 'flex',
-  },
-  buttonExitCamera: {
-    position: 'absolute',
-    right: 0,
-    width: 30,
-    height: 30,
-    display: 'flex',
-    alignItems: 'center',
-    // flexDirection:'row',
-  },
 
   textCameraButton: {
     fontSize: 30,
@@ -100,10 +84,6 @@ export default StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  profileTopScreen: {
-    // backgroundColor: '#cccccc',
-    alignItems: 'flex-start',
-  },
   settingLoginHolder: {
     position: 'absolute',
     right: 0,
@@ -129,33 +109,27 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   viewContainProfileInfor: {
-    marginTop:'5%',
+    marginTop: '5%',
     flexDirection: 'row',
     borderBottomWidth: 2,
-    paddingBottom: "2%",
-    borderColor:'#b3b3b3'
+    paddingBottom: '2%',
+    borderColor: '#b3b3b3',
   },
-  profileLabel: {
-    fontWeight: 'bold',
-    fontSize: 25,
-  },
-  profileText: {
-    fontSize: 25,
-  },
+
   viewContainLog: {
     flexDirection: 'row',
   },
   logLabel: {
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 18,
   },
   logText: {
     fontSize: 18,
   },
-  // component chung
+  // components chung //////////////////////
   screenImage: {
-    width:'100%',
-    height:'100%'
+    width: '100%',
+    height: '100%',
   },
   roundButton: {
     width: 70,
@@ -167,115 +141,203 @@ export default StyleSheet.create({
     backgroundColor: '#e6e6e6',
     display: 'flex',
   },
-  // Home screen
+  // Home screen//////////////////////////////////////////
   homeTopScreen: {
-    width:'100%',
+    width: '100%',
     height: '50%',
-    flexWrap:'wrap'
+    flexWrap: 'wrap',
   },
   homeBottomScreen: {
-    width:'100%',
-    maxHeight:'70%',
-    flexWrap:'wrap',
-    flexDirection:'column'
+    width: '100%',
+    maxHeight: '70%',
+    flexWrap: 'wrap',
+    flexDirection: 'column',
   },
   homeBottomScreenRowContainButton: {
-    width:'100%',
-    flexDirection:'row',
-    justifyContent:'center',
-    marginTop:'5%',
-   // backgroundColor:'red',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: '5%',
+    // backgroundColor:'red',
   },
   homeCreenCameraImage: {
-    width:90,
-    height:90,
-    flexWrap:'wrap',
-   // backgroundColor:'green'
+    width: 100,
+    height: 100,
+    flexWrap: 'wrap',
+    // backgroundColor:'green'
   },
   homeCreenCamera: {
-    width:'80%',
+    width: '74%',
     height: 50,
-    borderRadius:50,
+    borderRadius: 50,
     backgroundColor: '#2c74bc',
-    justifyContent:'center',
+    justifyContent: 'center',
+  },
+  homeButtonLabel: {
+    fontSize: 17,
+    fontWeight: 'bold',
   },
   homeButtonAndName: {
-    flexDirection:'column',
-    flexWrap:'wrap',
-    alignItems:'center',
-
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignItems: 'center',
   },
   homeButtonAndNameAtMid: {
-    flexDirection:'column',
-    flexWrap:'wrap',
-    alignItems:'center',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignItems: 'center',
     marginLeft: '6%',
-    marginRight: '6%'
+    marginRight: '6%',
   },
   // log creen,
   logContainer: {
-    width:'100%',
-    flexWrap:'wrap',
-    flexDirection:'row',
-    borderWidth:1,
-    borderColor:'#b3b3b3'
+    width: '100%',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    //borderWidth:1,
+    //borderColor:'#b3b3b3'
   },
   logContainLeft: {
-    width:'20%',
+    width: '20%',
     paddingTop: 5,
     //backgroundColor:'red',
-    flexWrap:'wrap',
-    alignContent:'center',
-    
+    flexWrap: 'wrap',
+    alignContent: 'center',
   },
   logContainRight: {
-    width:'80%',
+    width: '80%',
     //backgroundColor:'blue',
-    flexWrap:'wrap',
-    flexDirection:'column'
+    flexWrap: 'wrap',
+    flexDirection: 'column',
+    borderBottomWidth: 1,
+    borderColor: '#b3b3b3',
   },
-  // Camera screen
+  // Camera screen////////////////////////////////////////////
   cameraTopScreen: {
-    width:'100%',
-    height:'70%',
-    flexWrap:'wrap',
-    backgroundColor:'blue'
+    width: '100%',
+    height: '70%',
+    flexWrap: 'wrap',
+    backgroundColor: 'blue',
   },
   cameraDisplay: {
-    width:'100%',
-    flex: 1
+    width: '100%',
+    flex: 1,
   },
   cameraBottomScreen: {
-    width:'100%',
-    height:'30%',
-    flexWrap:'wrap',
-    flexDirection:'row',
+    width: '100%',
+    height: '30%',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
     //backgroundColor:'green'
   },
   cameraBottomLeft: {
-    width:'40%',
-    height:'100%',
-    flexWrap:'wrap',
-    //backgroundColor:'red'
+    width: '40%',
+    height: '100%',
+    flexWrap: 'wrap',
+    backgroundColor: 'gray',
   },
   cameraBottomRight: {
-    width:'60%',
-    height:'100%',
-   //backgroundColor:'blue',
-   flexDirection:'column',
-   flexWrap:'wrap',
-   padding: 10
+    width: '60%',
+    height: '100%',
+    //backgroundColor:'blue',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    padding: 10,
   },
   cameraBottomInfoLabel: {
-    fontSize: 20,
+    fontSize: 15,
     color: 'black',
     fontWeight: 'bold',
   },
   cameraBottomNameDisplay: {
-    fontSize: 20, 
-    color: 'black'
-  }
+    fontSize: 20,
+    color: 'black',
+  },
+  buttonExitCamera: {
+    position: 'absolute',
+    right: 0,
+    width: 40,
+    height: 40,
+    display: 'flex',
+    alignItems: 'center',
+    // flexDirection:'row',
+  },
+  buttonFlipCamera: {
+    position: 'absolute',
+    fontSize: 20,
+    width: 60,
+    height: 60,
+    display: 'flex',
+  },
+  //profile screen/////////////////////////////
+  profileTopSCrenn: {
+    height: '20%',
+    width: '100%',
+    //backgroundColor: '#c4c4c4',
+    elevation: 2,
+  },
+  profileViewContainAvata: {
+    width: '100%',
+    height: '20%',
+    marginTop: '30%',
+    position: 'absolute',
+    elevation: 3,
+    backgroundColor: 'transparent',
+  },
+  profileScreenAvata: {
+    width: 120,
+    height: 120,
+    borderRadius: 80,
+    elevation: 3,
+    alignSelf: 'center',
+    flexWrap: 'wrap',
+  },
+  profileBottomScreen: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+    elevation: 2,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingTop: '20%',
+  },
+  profileBottomInfoContain: {
+    width: '100%',
+    height: '100%',
+   // backgroundColor: 'red',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  profileBottomInfoContainLeft: {
+    width: '35%',
+    height: '100%',
+    flexDirection: 'column',
+   // backgroundColor: 'blue',
+    paddingLeft:'5%',
+    paddingTop:'5%',
+  },
+  profileBottomInfoContainRight: {
+    width: '65%',
+    height: '100%',
+    flexDirection: 'column',
+   // backgroundColor: 'green',
+    paddingTop:'5%',
+    paddingRight:'4%'
 
-
-
+  },
+  profileLabel: {
+    fontWeight: 'bold',
+    fontSize: 23,
+    borderBottomWidth:2,
+    borderColor:'#b3b3b3',
+    marginBottom:25
+  },
+  profileText: {
+    fontSize: 23,
+    marginBottom:25,
+    borderBottomWidth:2,
+    borderColor:'#b3b3b3'
+    
+  },
 });

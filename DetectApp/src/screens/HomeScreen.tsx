@@ -85,7 +85,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
             style={Styles.homeCreenCamera}
             mode="contained"
             onPress={toDetectFaceScreen}>
-            [ Nhận diện ] 
+            <Text style={{fontSize:18}}>[ Nhận diện ] </Text>
           </Button>
         </View>
         <View style={Styles.homeBottomScreenRowContainButton}>
@@ -95,7 +95,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
                 source={require('../image/history.png')}
                 style={Styles.buttonImage}></Image>
             </TouchableOpacity>
-            <Text style={{fontSize: 20}}>Lịch sử</Text>
+            <Text style={Styles.homeButtonLabel}>Lịch sử</Text>
           </View>
           <View style={Styles.homeButtonAndNameAtMid}>
             <TouchableOpacity style={Styles.roundButton} onPress={toProfile}>
@@ -103,7 +103,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
                 source={require('../image/profile.png')}
                 style={Styles.buttonImage}></Image>
             </TouchableOpacity>
-            <Text style={{fontSize: 20}}>Cá nhân</Text>
+            <Text style={Styles.homeButtonLabel}>Hồ sơ</Text>
           </View>
           <View style={Styles.homeButtonAndName}>
             <TouchableOpacity
@@ -113,7 +113,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
                 source={require('../image/logout.png')}
                 style={Styles.buttonImage}></Image>
             </TouchableOpacity>
-            <Text style={{fontSize: 20}}>Đăng xuất</Text>
+            <Text style={Styles.homeButtonLabel}>Đăng xuất</Text>
           </View>
         </View>
       </View>

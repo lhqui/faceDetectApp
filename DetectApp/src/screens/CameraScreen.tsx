@@ -38,21 +38,11 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
     navigation.goBack();
     return true;
   };
-  const [capPermission, setcapPermission] = useState(true);
   const [timeLeft, setTimeLeft] = useState(0);
-  const [detectPhase, setDetectPhase] = useState(0);
   useEffect(() => {
     if (timeLeft === 0) {
-      //  console.log("TIME LEFT IS 0");
-      // setTimeLeft(null)
-      //setcapPermission(true);
-      //setDetectPhase(0);
       return;
     }
-    // exit early when we reach 0
-    //if (!timeLeft) return;
-    // save intervalId to clear the interval when the
-    // component re-renders
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
@@ -121,13 +111,9 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         height: windowHeight,
       };
       const data = await camera.current.takePictureAsync(Imageoptions);
-
       setCapturedImage(data.uri);
-      //cropImage(data.uri);
-      //console.log("base64 ne", data.base64)
       sendIdentifyApi(data.base64);
     }
-    setDetectPhase(0);
   };
 
   //const [baseUrl, setbaseUrl] = useState('')
@@ -158,14 +144,17 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         if (res.data.status === 1 && res.data.data !== null) {
           console.log(res.data);
           setrecognizedName(res.data.data.name);
-          setDetectPhase(0);
+          //setDetectPhase(0);
+          setTimeLeft(10);
+        } else {
+          setTimeLeft(5);
         }
       })
       .catch((err: any) => {
         console.log('loi khong gui dc');
       });
   };
-
+  const [isDetecting, setisDetecting] = useState(false)
   const checkCoordinate = () => {
     console.log(windowWidth, windowHeight);
     console.log(topLeft);
@@ -180,11 +169,11 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
       topLeft.width > 0
     ) {
       // console.log("dc chup")
-      setDetectPhase(1);
+      setisDetecting(true)
       takePicture();
-      setTimeLeft(10);
+     // setTimeLeft(10);
     } else {
-      setDetectPhase(0);
+      setisDetecting(false)
       console.log('ko dc chup');
     }
   };
@@ -207,54 +196,10 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
       checkCoordinate();
     }
   };
-  // const handleFaceDetection = ({faces}: any) => {
-  //   console.log(detectPhase)
-  //   //console.log(timeLeft===0)
-  //   switch (detectPhase) {
-  //     case 0:
-  //       setTopLeft({
-  //         ...topLeft,
-  //         height: Math.ceil(faces[0].bounds.size.height),
-  //         width: Math.ceil(faces[0].bounds.size.width),
-  //         x: Math.ceil(faces[0].bounds.origin.x),
-  //         y: Math.ceil(faces[0].bounds.origin.y),
-  //       });
-  //       checkCoordinate();
-  //       break;
-  //     case 1:
-  //       checkPermisionForCap();
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
+
 
   const toExistCamera = () => navigation.navigate('Home');
   const [cameraId, setcameraId] = useState('');
-  // const imageReview = (photo: any) => {
-  //   return (
-  //     <View
-  //       style={{
-  //         height: '100%',
-  //         width: '100%',
-  //         borderWidth: 2,
-
-  //       }}>
-  //       {photo != '' && (
-  //         <Image
-  //           style={{
-  //             width: '100%',
-  //             height: '100%',
-  //            // marginLeft: '3%',
-  //            // marginBottom: '3%',
-  //           }}
-  //           source={{uri: photo}}
-  //         />
-  //       )}
-  //     </View>
-  //   );
-  // };
-
   return (
     <SafeAreaView style={Styles.container}>
       <View style={Styles.cameraTopScreen}>
@@ -331,7 +276,7 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
           height: '20%',
           position: 'absolute',
           borderWidth: 2,
-          borderColor: detectPhase > 0 ? 'green' : 'black',
+          borderColor: isDetecting == true ? 'green' : 'black',
           alignSelf: 'center',
           marginTop: '30%',
         }}>

@@ -3,10 +3,10 @@ import {useState, useEffect, useRef, useCallback} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
+  ActivityIndicator,
   BackHandler,
   ScrollView,
-  Image
+  Image,
 } from 'react-native';
 import {Props} from '../components/Types';
 import {Appbar} from 'react-native-paper';
@@ -51,28 +51,30 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
       return (
         <View key={log.id_checkin_logs} style={Styles.logContainer}>
           <View style={Styles.logContainLeft}>
-            <Image source={require('../image/personCheck.png')} style={{width:60, height:60}}></Image>     
+            <Image
+              source={require('../image/checkin.png')}
+              style={{width: 60, height: 60}}></Image>
           </View>
           <View style={Styles.logContainRight}>
-          <View style={Styles.viewContainLog}>
-            <Text style={Styles.logLabel}>Mã số: </Text>
-            <Text style={Styles.logText}>{log.id_checkin_logs}</Text>
+            <View style={Styles.viewContainLog}>
+              <Text style={Styles.logLabel}>Mã số: </Text>
+              <Text style={Styles.logText}>{log.id_checkin_logs}</Text>
+            </View>
+            <View style={Styles.viewContainLog}>
+              <Text style={Styles.logLabel}>Họ Tên: </Text>
+              <Text style={Styles.logText}>
+                {log.first_name}
+                {log.last_name}
+              </Text>
+            </View>
+            <View style={Styles.viewContainLog}>
+              <Text style={Styles.logLabel}>Thời gian: </Text>
+              <Text style={Styles.logText}>
+                {formatDayTime(log.created_at)}
+              </Text>
+            </View>
           </View>
-          <View style={Styles.viewContainLog}>
-            <Text style={Styles.logLabel}>Họ Tên: </Text>
-            <Text style={Styles.logText}>
-              {log.first_name}{log.last_name}
-            </Text>
-          </View>
-          <View style={Styles.viewContainLog}>
-            <Text style={Styles.logLabel}>Thời gian: </Text>
-            <Text style={Styles.logText}>
-              {formatDayTime(log.created_at)}
-            </Text>
-          </View>
- 
-          </View>
-                 </View>
+        </View>
       );
     });
     return <ScrollView>{view}</ScrollView>;
@@ -85,7 +87,13 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
         <Appbar.Content title="LỊCH SỬ" />
       </Appbar.Header>
       {/* //<Text>{JSON.stringify(listCheckinlog)}</Text> */}
-      {renderListCheckinLog(listCheckinlog)}
+      {listCheckinlog.length > 0 ? (
+        renderListCheckinLog(listCheckinlog)
+      ) : (
+        <View style={Styles.modalLoadingAnimation}>
+          <ActivityIndicator size="large" color="#2c74bc" />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

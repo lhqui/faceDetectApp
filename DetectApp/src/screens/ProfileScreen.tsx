@@ -61,52 +61,29 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
       </Appbar.Header>
       <View>
       <View
-        style={{
-          height: '20%',
-          width: '100%',
-          backgroundColor: '#c4c4c4',
-          elevation: 2,
-        }}></View>
+        style={Styles.profileTopSCrenn}>
+                    <Image
+            source={require('../image/profileLogo.png')}
+            style={Styles.screenImage}></Image>
+        </View>
       <View
-        style={{
-          width: '100%',
-          height: '20%',
-          marginTop: '25%',
-          position: 'absolute',
-          elevation: 3,
-          backgroundColor: 'transparent'
-        }}>
+        style={Styles.profileViewContainAvata}>
         <View
-          style={{
-            width: 150,
-            height: 150,
-            borderRadius: 80,
-            // backgroundColor: 'white',
-            elevation: 3,
-            alignSelf: 'center',
-          }}>
+          style={Styles.profileScreenAvata}>
           <Image
             source={require('../image/user.png')}
-            style={{width: '100%', height: '100%'}}></Image>
-             <Text style={{fontWeight:'bold', fontSize:30, alignSelf:'center'}}>{profile.last_name} </Text>
+            style={Styles.screenImage}></Image>
+            
         </View>
       </View>
-      <View style={{
-        width: '100%',
-        height: '100%',
-        backgroundColor:'transparent',
-        elevation:2,
-        flexDirection:'column',
-        paddingTop:'20%',
-        paddingLeft: '10%',
-        paddingRight:'10%'
-      }}>
-        <View style={{marginTop:'15%', flexDirection:'row', borderBottomWidth:2, paddingBottom: "2%", borderColor:'#b3b3b3'}}>
+      <View style={Styles.profileBottomScreen}>
+         <Text style={{fontWeight:'bold', fontSize:30, alignSelf:'center'}}>{profile.last_name} </Text>
+        {/* <View style={{marginTop:'15%', flexDirection:'row', borderBottomWidth:2, paddingBottom: "2%", borderColor:'#b3b3b3'}}>
           <Text style={Styles.profileLabel}>Họ tên: </Text>
           <Text style={Styles.profileText}>{profile.first_name}{profile.last_name} </Text>
         </View>
         <View style={Styles.viewContainProfileInfor}>
-          <Text style={Styles.profileLabel}>Tên tài khoản: </Text>
+          <Text style={Styles.profileLabel}>Tài khoản: </Text>
           <Text style={Styles.profileText}>{profile.username}</Text>
         </View> 
         <View style={Styles.viewContainProfileInfor}>
@@ -116,6 +93,21 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
         <View style={Styles.viewContainProfileInfor}>
           <Text style={Styles.profileLabel}>Ngày tạo: </Text>
           <Text style={Styles.profileText}> {formatDayTime(profile.created_at) }</Text>
+        </View> */}
+        <View style={Styles.profileBottomInfoContain}>
+          <View style={Styles.profileBottomInfoContainLeft}>
+          <Text style={Styles.profileLabel}>Họ tên </Text>
+          <Text style={Styles.profileLabel}>Tài khoản </Text>
+          <Text style={Styles.profileLabel}>Email </Text>
+          <Text style={Styles.profileLabel}>Ngày tạo </Text>
+          </View>
+          <View style={Styles.profileBottomInfoContainRight}>
+          <Text style={Styles.profileText}>{profile.first_name} {profile.last_name} </Text>
+          <Text style={Styles.profileText}>{profile.username}</Text>
+          <Text style={Styles.profileText}>{profile.email}</Text>
+          <Text style={Styles.profileText}>{formatDayTime(profile.created_at) }</Text>
+
+          </View>
         </View>
         </View>
 
