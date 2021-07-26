@@ -234,7 +234,7 @@ export default StyleSheet.create({
     width: '40%',
     height: '100%',
     flexWrap: 'wrap',
-    backgroundColor: 'gray',
+  //  backgroundColor: 'gray',
   },
   cameraBottomRight: {
     width: '60%',

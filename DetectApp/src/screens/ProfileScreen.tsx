@@ -7,6 +7,7 @@ import {Avatar, Title, Appbar, Button} from 'react-native-paper';
 import Styles from '../components/Styles';
 import {useDispatch, useSelector, Provider} from 'react-redux';
 import {State, store} from '../stores';
+import {Dimensions} from 'react-native';
 
 interface profileInformation {
   first_name: string;
@@ -20,6 +21,7 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
     navigation.goBack();
     return true;
   };
+  const windowWidth = Dimensions.get('window').width;
   const userProfile = useSelector((state: State) => state.profile);
   const [profile, setProfile] = useState<profileInformation>({
     first_name: '',
@@ -78,22 +80,6 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={Styles.profileBottomScreen}>
          <Text style={{fontWeight:'bold', fontSize:30, alignSelf:'center'}}>{profile.last_name} </Text>
-        {/* <View style={{marginTop:'15%', flexDirection:'row', borderBottomWidth:2, paddingBottom: "2%", borderColor:'#b3b3b3'}}>
-          <Text style={Styles.profileLabel}>Họ tên: </Text>
-          <Text style={Styles.profileText}>{profile.first_name}{profile.last_name} </Text>
-        </View>
-        <View style={Styles.viewContainProfileInfor}>
-          <Text style={Styles.profileLabel}>Tài khoản: </Text>
-          <Text style={Styles.profileText}>{profile.username}</Text>
-        </View> 
-        <View style={Styles.viewContainProfileInfor}>
-          <Text style={Styles.profileLabel}>Email: </Text>
-          <Text style={Styles.profileText}> {profile.email}</Text>
-        </View>
-        <View style={Styles.viewContainProfileInfor}>
-          <Text style={Styles.profileLabel}>Ngày tạo: </Text>
-          <Text style={Styles.profileText}> {formatDayTime(profile.created_at) }</Text>
-        </View> */}
         <View style={Styles.profileBottomInfoContain}>
           <View style={Styles.profileBottomInfoContainLeft}>
           <Text style={Styles.profileLabel}>Họ tên </Text>
@@ -106,8 +92,9 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
           <Text style={Styles.profileText}>{profile.username}</Text>
           <Text style={Styles.profileText}>{profile.email}</Text>
           <Text style={Styles.profileText}>{formatDayTime(profile.created_at) }</Text>
-
+          <Text style={Styles.profileText}>{windowWidth}</Text>
           </View>
+          
         </View>
         </View>
 

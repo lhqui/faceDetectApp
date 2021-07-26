@@ -6,11 +6,10 @@ import {RNCamera} from 'react-native-camera';
 import Styles from '../components/Styles';
 import type {Props} from '../components/Types';
 import ImageEditor from '@react-native-community/image-editor';
-
 import {Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
 import {State, store} from '../stores';
-import {Value} from 'react-native-reanimated';
+import {log, Value} from 'react-native-reanimated';
 import RNFS from 'react-native-fs';
 
 interface cameraProps {
@@ -39,8 +38,10 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
     return true;
   };
   const [timeLeft, setTimeLeft] = useState(0);
+  const [isDetecting, setisDetecting] = useState(false)
   useEffect(() => {
     if (timeLeft === 0) {
+      setisDetecting(false)
       return;
     }
     const intervalId = setInterval(() => {
@@ -141,59 +142,62 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
         token: userProfile.token,
       })
       .then((res: any) => {
-        if (res.data.status === 1 && res.data.data !== null) {
-          console.log(res.data);
-          setrecognizedName(res.data.data.name);
-          //setDetectPhase(0);
-          setTimeLeft(10);
+        if (res.data.status === 1) {
+          if(res.data.data !== "") {
+            console.log(res.data);
+            setrecognizedName(res.data.data.name);
+            //setDetectPhase(0);
+            setTimeLeft(10);
+          } else {
+            setTimeLeft(5);
+            setrecognizedName("Không thể nhận diện!");
+          }
         } else {
-          setTimeLeft(5);
+          console.log("loi ko gui dc");
+          
         }
       })
       .catch((err: any) => {
         console.log('loi khong gui dc');
       });
   };
-  const [isDetecting, setisDetecting] = useState(false)
-  const checkCoordinate = () => {
-    console.log(windowWidth, windowHeight);
-    console.log(topLeft);
+  
+  const checkCoordinate = ({x , y, w, h}: any ) => {
+   // console.log(windowWidth, windowHeight);
+    console.log(x , y, w, h);
     if (
-      topLeft.x <= (13 * windowHeight) / 100 &&
-      topLeft.x > 0 &&
-      topLeft.y <= (47 * windowWidth) / 100 &&
-      topLeft.y > 0 &&
-      topLeft.height <= (34 * windowHeight) / 100 &&
-      topLeft.height > 0 &&
-      topLeft.width <= (75 * windowWidth) / 100 &&
-      topLeft.width > 0
+      x <= (13 * windowHeight) / 100 &&
+      x > 0 &&
+      y <= (47 * windowWidth) / 100 &&
+      y > 0 &&
+      h <= (34 * windowHeight) / 100 &&
+      h > 0 &&
+      w <= (75 * windowWidth) / 100 &&
+      w > 0
     ) {
       // console.log("dc chup")
       setisDetecting(true)
-      takePicture();
-     // setTimeLeft(10);
+      takePicture()
     } else {
-      setisDetecting(false)
       console.log('ko dc chup');
     }
-  };
-  const checkPermisionForCap = () => {
-    if (timeLeft === 0) {
-      takePicture();
-      setTimeLeft(10);
-    }
+    //isDetecting == true && takePicture
   };
 
   const handleFaceDetection = ({faces}: any) => {
-    if (timeLeft === 0) {
-      setTopLeft({
-        ...topLeft,
-        height: Math.ceil(faces[0].bounds.size.height),
-        width: Math.ceil(faces[0].bounds.size.width),
-        x: Math.ceil(faces[0].bounds.origin.x),
-        y: Math.ceil(faces[0].bounds.origin.y),
-      });
-      checkCoordinate();
+    if (isDetecting == false) {
+      let x = Math.ceil(faces[0].bounds.origin.x)
+      let y = Math.ceil(faces[0].bounds.origin.y) 
+      let w = Math.ceil(faces[0].bounds.size.width)
+      let h = Math.ceil(faces[0].bounds.size.height)
+      // setTopLeft({
+      //   ...topLeft,
+      //   height: Math.ceil(faces[0].bounds.size.height),
+      //   width: Math.ceil(faces[0].bounds.size.width),
+      //   x: Math.ceil(faces[0].bounds.origin.x),
+      //   y: Math.ceil(faces[0].bounds.origin.y),
+      // });
+      checkCoordinate({x, y, w, h});
     }
   };
 
@@ -249,7 +253,10 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
       <View style={Styles.cameraBottomScreen}>
         <View style={Styles.cameraBottomLeft}>
           {/* {imageReview(capturedImage)} */}
-          {capturedImage !== '' && (
+          {capturedImage == '' ?
+          <Image style={{width:'100%', height:'100%'}} source={require('../image/faceImage.png')}></Image>
+          :
+          (
             <Image
               style={{
                 width: '100%',
@@ -276,7 +283,7 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
           height: '20%',
           position: 'absolute',
           borderWidth: 2,
-          borderColor: isDetecting == true ? 'green' : 'black',
+          borderColor: isDetecting == true ?'green': 'black',
           alignSelf: 'center',
           marginTop: '30%',
         }}>

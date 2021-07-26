@@ -141,8 +141,10 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             console.log('dang nhap thanh cong');
             navigation.navigate('Home');
             setModalVisible(false);
+            setCorrectPass(false);
           } else {
             console.log('sai mk');
+            setCorrectPass(true);
             setModalVisible(false);
           }
         })
@@ -281,7 +283,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
   };
 
   // render the login screen
-
+  const [inCorrectPass, setCorrectPass] = useState(false)
   return (
     <View style={Styles.container}>
       <View style={Styles.topScreen}>
@@ -320,6 +322,10 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             onPress={loginHandle}>
             Đăng nhập
           </Button>
+          { inCorrectPass == true &&
+            <Text style={{fontSize:15, color:'red'}}>Không đúng tài khoản hoặc mật khẩu!</Text>
+          }
+          
         </Card.Content>
       </Card>
       {userSettingIsShow == true && settingInput()}
