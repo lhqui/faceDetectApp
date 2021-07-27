@@ -63,8 +63,7 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
             <View style={Styles.viewContainLog}>
               <Text style={Styles.logLabel}>Họ Tên: </Text>
               <Text style={Styles.logText}>
-                {log.first_name}
-                {log.last_name}
+                {log.first_name} {log.last_name}
               </Text>
             </View>
             <View style={Styles.viewContainLog}>

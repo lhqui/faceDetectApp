@@ -47,8 +47,8 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         token: userProfile.token,
       })
       .then((res: any) => {
-        console.log(res.data);
-        console.log(res.data.status);
+        // console.log(res.data);
+        // console.log(res.data.status);
         if (res.data.status == 1) {
           dispatch(resetUsertoStore());
           navigation.navigate('Login');

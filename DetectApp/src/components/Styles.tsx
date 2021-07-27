@@ -234,7 +234,7 @@ export default StyleSheet.create({
     width: '40%',
     height: '100%',
     flexWrap: 'wrap',
-  //  backgroundColor: 'gray',
+    //  backgroundColor: 'gray',
   },
   cameraBottomRight: {
     width: '60%',
@@ -304,7 +304,7 @@ export default StyleSheet.create({
   profileBottomInfoContain: {
     width: '100%',
     height: '100%',
-   // backgroundColor: 'red',
+    //backgroundColor: 'red',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -313,31 +313,51 @@ export default StyleSheet.create({
     width: '35%',
     height: '100%',
     flexDirection: 'column',
-   // backgroundColor: 'blue',
-    paddingLeft:'5%',
-    paddingTop:'5%',
+    // backgroundColor: 'blue',
+    paddingLeft: '5%',
+    paddingTop: '5%',
   },
   profileBottomInfoContainRight: {
     width: '65%',
     height: '100%',
     flexDirection: 'column',
-   // backgroundColor: 'green',
-    paddingTop:'5%',
-    paddingRight:'4%'
-
+    // backgroundColor: 'green',
+    paddingTop: '5%',
+    paddingRight: '4%',
   },
+  // width > 411
   profileLabel: {
     fontWeight: 'bold',
     fontSize: 23,
-    borderBottomWidth:2,
-    borderColor:'#b3b3b3',
-    marginBottom:25
+    borderBottomWidth: 2,
+    borderColor: '#b3b3b3',
+    marginBottom: 25,
   },
   profileText: {
     fontSize: 23,
-    marginBottom:25,
-    borderBottomWidth:2,
-    borderColor:'#b3b3b3'
-    
+    marginBottom: 25,
+    borderBottomWidth: 2,
+    borderColor: '#b3b3b3',
+  },
+  // width < 400
+  profileBottomInfoContainSmall: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'white',
+    flexDirection: 'column',
+  },
+  profileLabelSmall: {
+    fontWeight: 'bold',
+    fontSize: 23,
+    marginLeft: '5%',
+  },
+  profileTextSmall: {
+    fontSize: 23,
+    marginBottom: 25,
+    borderBottomWidth: 2,
+    borderColor: '#b3b3b3',
+    marginLeft: '5%',
+    marginRight: '5%',
+    paddingLeft: '18%',
   },
 });

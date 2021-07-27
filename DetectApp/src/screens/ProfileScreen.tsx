@@ -80,22 +80,36 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={Styles.profileBottomScreen}>
          <Text style={{fontWeight:'bold', fontSize:30, alignSelf:'center'}}>{profile.last_name} </Text>
-        <View style={Styles.profileBottomInfoContain}>
-          <View style={Styles.profileBottomInfoContainLeft}>
-          <Text style={Styles.profileLabel}>Họ tên </Text>
-          <Text style={Styles.profileLabel}>Tài khoản </Text>
-          <Text style={Styles.profileLabel}>Email </Text>
-          <Text style={Styles.profileLabel}>Ngày tạo </Text>
-          </View>
-          <View style={Styles.profileBottomInfoContainRight}>
-          <Text style={Styles.profileText}>{profile.first_name} {profile.last_name} </Text>
-          <Text style={Styles.profileText}>{profile.username}</Text>
-          <Text style={Styles.profileText}>{profile.email}</Text>
-          <Text style={Styles.profileText}>{formatDayTime(profile.created_at) }</Text>
-          <Text style={Styles.profileText}>{windowWidth}</Text>
-          </View>
-          
-        </View>
+         { windowWidth >= 410
+         ?
+          (        <View style={Styles.profileBottomInfoContain}>
+            <View style={Styles.profileBottomInfoContainLeft}>
+            <Text style={Styles.profileLabel}>Họ tên </Text>
+            <Text style={Styles.profileLabel}>Tài khoản </Text>
+            <Text style={Styles.profileLabel}>Email </Text>
+            <Text style={Styles.profileLabel}>Ngày tạo </Text>
+            </View>
+            <View style={Styles.profileBottomInfoContainRight}>
+            <Text style={Styles.profileText}>{profile.first_name} {profile.last_name} </Text>
+            <Text style={Styles.profileText}>{profile.username}</Text>
+            <Text style={Styles.profileText}>{profile.email}</Text>
+            <Text style={Styles.profileText}>{formatDayTime(profile.created_at) }</Text>
+            </View>
+          </View>)
+         :
+         (<View style={Styles.profileBottomInfoContainSmall}>
+            <Text style={Styles.profileLabelSmall}>Họ tên: </Text>
+            <Text style={Styles.profileTextSmall}>{profile.first_name} {profile.last_name} </Text>
+            <Text style={Styles.profileLabelSmall}>Tài khoản: </Text>
+            <Text style={Styles.profileTextSmall}>{profile.username}</Text>
+            <Text style={Styles.profileLabelSmall}>Email: </Text>
+            <Text style={Styles.profileTextSmall}>{profile.email}</Text>
+            <Text style={Styles.profileLabelSmall}>Ngày tạo: </Text>
+            <Text style={Styles.profileTextSmall}>{formatDayTime(profile.created_at) }</Text>
+
+         </View>)
+         }
+
         </View>
 
       </View>
