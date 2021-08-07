@@ -78,7 +78,6 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
     }).reverse();
     return <ScrollView>{view}</ScrollView>;
   };
-
   return (
     <SafeAreaView style={Styles.container}>
       <Appbar.Header theme={{colors: {primary: '#2c74bc'}}}>
