@@ -75,7 +75,7 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
           </View>
         </View>
       );
-    });
+    }).reverse();
     return <ScrollView>{view}</ScrollView>;
   };
 

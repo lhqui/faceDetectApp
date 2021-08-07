@@ -81,7 +81,7 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={Styles.profileBottomScreen}>
          <Text style={{fontWeight:'bold', fontSize:30, alignSelf:'center'}}>{profile.last_name} </Text>
-         { windowWidth >= 412
+         { windowWidth >= 411
          ?
           (        <View style={Styles.profileBottomInfoContain}>
             <View style={Styles.profileBottomInfoContainLeft}>
@@ -95,7 +95,6 @@ const ProfileScreen: React.FC<Props> = ({navigation}) => {
             <Text style={Styles.profileText}>{profile.username}</Text>
             <Text style={Styles.profileText}>{profile.email}</Text>
             <Text style={Styles.profileText}>{formatDayTime(profile.created_at) }</Text>
-            <Text style={Styles.profileText}>{windowWidth }</Text>
             </View>
           </View>)
          :
