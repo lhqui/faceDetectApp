@@ -115,7 +115,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
           idOffice ="6"
       }
       axios
-        .post('https://ai.giaiphapmobifone.vn/api/login', {
+        .post('https://something.com', {
           username: values.account,
           password: values.password,
         })
