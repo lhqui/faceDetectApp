@@ -42,7 +42,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
   const logOutHandle = () => {
     setModalVisible(true);
     axios
-      .post('https://ai.giaiphapmobifone.vn/api/logout', {
+      .post('https://something.com', {
         username: userProfile.username,
         token: userProfile.token,
       })
