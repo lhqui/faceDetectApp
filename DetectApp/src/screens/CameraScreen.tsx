@@ -135,7 +135,7 @@ const CameraScreen: React.FC<Props> = ({navigation}) => {
       userProfile.id_office,
     );
     axios
-      .post('https://ai.giaiphapmobifone.vn/api/face', {
+      .post('https://something.com', {
         office_id: userProfile.id_office,
         camera_id: userProfile.id_camera,
         image: data,
