@@ -25,7 +25,7 @@ const LogScreen: React.FC<Props> = ({navigation}) => {
   const userProfile = useSelector((state: State) => state.profile);
   const axios = require('react-native-axios');
   const getCheckinlog = async () => {
-    const result = await axios.post('https://ai.giaiphapmobifone.vn/api/logs', {
+    const result = await axios.post('https://something.com', {
       username: userProfile.username,
       token: userProfile.token,
     });
